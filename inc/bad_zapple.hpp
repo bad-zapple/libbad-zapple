@@ -13,6 +13,4 @@ class TestObj
 	void val(int _val);
 };
 
-int test(int ac, char **av);
-
 #endif
