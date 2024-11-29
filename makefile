@@ -1,6 +1,6 @@
-NAME=libbad-zapple
-SRC=bad_zapple.cpp
-HEADER=bad_zapple.hpp
+NAME=libbad-zapple.a
+SRC=bad_zapple.cpp SocketW.cpp
+HEADER=bad_zapple.hpp LibBadZapple.hpp SocketW.hpp
 OBJ=$(SRC:.cpp=.o)
 
 CC=g++
