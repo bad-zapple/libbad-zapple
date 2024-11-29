@@ -1,15 +1,13 @@
-LIB=bad-zapple
-NAME=build/lib$(LIB).a
-SRC=bad_zapple.cpp
-HEADER=bad_zapple.hpp
-OBJ=$(SRC:.cpp=.o)
+NAME=bad-zapple
 BUILD_DIR=./build
-ARGS=
+TARGET=$(BUILD_DIR)/$(NAME).a
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): cmake-rule
-	make -C $(BUILD_DIR) $(LIB)
+.PHONY: all 
+
+$(TARGET): cmake-rule
+	make -C $(BUILD_DIR) $(NAME)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -17,18 +15,28 @@ $(BUILD_DIR):
 cmake-rule: update-sources
 	cmake -B $(BUILD_DIR)
 
+.PHONY: cmake-rule
+
 clean:
 	make clean -C $(NAME)
+
+.PHONY: clean 
 
 fclean:
 	rm -rf $(BUILD_DIR)
 
+.PHONY: fclean 
+
 update-sources: $(BUILD_DIR)
 	@sh ./tools/list_sources.sh build/sources.cmake
 
+.PHONY: update-sources 
+
 re: clean all
+
+.PHONY: re
 
 lsp: update-sources
 	cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B $(BUILD_DIR)
 
-.PHONY: all clean fclean re
+.PHONY: lsp 
