@@ -1,27 +1,34 @@
-NAME=libbad-zapple
+LIB=bad-zapple
+NAME=build/lib$(LIB).a
 SRC=bad_zapple.cpp
 HEADER=bad_zapple.hpp
 OBJ=$(SRC:.cpp=.o)
-
-CC=g++
-CFLAGS=-Wall -Wextra -Werror
-AR=ar
-ARFLAGS=rcs
+BUILD_DIR=./build
+ARGS=
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+$(NAME): cmake-rule
+	make -C $(BUILD_DIR) $(LIB)
 
-%.o: %.cpp $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+cmake-rule: $(BUILD_DIR) update-sources
+	cmake -B $(BUILD_DIR)
 
 clean:
-	rm -rf $(OBJ)
+	make clean -C $(NAME)
 
-fclean:
-	rm -rf $(OBJ) $(NAME)
+update-sources: $(BUILD_DIR)
+	@sh ./tools/list_sources.sh build/sources.cmake
+	@echo updating sources in build/sources.cmake
+	@echo sources found : 
+	@find src/ -name *.cpp | sed 's/^/\t/'
 
-re: fclean all
+re: clean all
+
+lsp: update-sources
+	cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B $(BUILD_DIR)
 
 .PHONY: all clean fclean re
