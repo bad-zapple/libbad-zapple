@@ -2,20 +2,16 @@ NAME=bad-zapple
 BUILD_DIR=./build
 TARGET=$(BUILD_DIR)/$(NAME).a
 
-all: $(TARGET)
+all: 
+	make -C $(BUILD_DIR) $(NAME)
 
 .PHONY: all 
 
-$(TARGET): cmake-rule
+$(TARGET): 
 	make -C $(BUILD_DIR) $(NAME)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
-
-cmake-rule: update-sources
-	cmake -B $(BUILD_DIR)
-
-.PHONY: cmake-rule
 
 clean:
 	make clean -C $(NAME)
@@ -26,6 +22,11 @@ fclean:
 	rm -rf $(BUILD_DIR)
 
 .PHONY: fclean 
+
+update-cmake: update-sources
+	cmake -B $(BUILD_DIR)
+
+.PHONY: update-cmake
 
 update-sources: $(BUILD_DIR)
 	@sh ./tools/list_sources.sh build/sources.cmake
