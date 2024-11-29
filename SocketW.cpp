@@ -72,7 +72,7 @@ bool	SocketW::CanConsume() const
 	return (consumable);
 }
 
-explicit SocketW::operator bool() const
+SocketW::operator bool() const
 {
     return (os.operator bool());
 }
