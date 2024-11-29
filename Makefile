@@ -14,17 +14,17 @@ $(NAME): cmake-rule
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-cmake-rule: $(BUILD_DIR) update-sources
+cmake-rule: update-sources
 	cmake -B $(BUILD_DIR)
 
 clean:
 	make clean -C $(NAME)
 
+fclean:
+	rm -rf $(BUILD_DIR)
+
 update-sources: $(BUILD_DIR)
 	@sh ./tools/list_sources.sh build/sources.cmake
-	@echo updating sources in build/sources.cmake
-	@echo sources found : 
-	@find src/ -name *.cpp | sed 's/^/\t/'
 
 re: clean all
 
