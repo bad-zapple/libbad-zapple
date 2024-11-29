@@ -1,3 +1,4 @@
 build
 libbad_zapple
 .vscode
+*.o
