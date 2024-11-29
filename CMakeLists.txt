@@ -12,6 +12,8 @@ set(SRCS
 	src/dummy.cpp
 )
 
+set (INC inc)
+
 add_library(bad_zapple ${SRCS})
 
-target_include_directories(bad_zapple PUBLIC)
+target_include_directories(bad_zapple PUBLIC ${INC})
