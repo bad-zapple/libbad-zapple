@@ -41,3 +41,13 @@ lsp: update-sources
 	cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B $(BUILD_DIR)
 
 .PHONY: lsp 
+
+tests:
+	make -C build/ tests
+
+.PHONY: tests 
+
+test-run: tests
+	./build/tests
+
+.PHONY: test-run
