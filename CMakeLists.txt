@@ -8,12 +8,10 @@ else()
     message(STATUS "This project is a top-level one")
 endif()
 
-set(SRCS
-	src/dummy.cpp
-)
+include(build/sources.cmake)
 
 set (INC inc)
 
-add_library(bad_zapple ${SRCS})
+add_library(bad-zapple ${SOURCES})
 
-target_include_directories(bad_zapple PUBLIC ${INC})
+target_include_directories(bad-zapple PUBLIC ${INC})

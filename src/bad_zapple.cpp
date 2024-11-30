@@ -1,4 +1,5 @@
 #include "bad_zapple.hpp"
+#include <iostream>
 
 TestObj::TestObj() : value(42)
 {
