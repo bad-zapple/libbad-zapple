@@ -12,6 +12,6 @@ jobs:
 #        run: sudo apt update && sudo apt install catch2
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Make
-        run: make update-cmake && make test-run
+      - name: Tests
+        run: make run-test
       - run: echo "Status ${{ job.status }}."

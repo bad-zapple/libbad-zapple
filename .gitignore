@@ -3,3 +3,4 @@ libbad_zapple
 .vscode
 *.o
 .cache
+lib

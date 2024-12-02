@@ -1,17 +1,18 @@
 NAME=bad-zapple
 BUILD_DIR=./build
 TARGET=$(BUILD_DIR)/$(NAME).a
+CMAKEFILE=$(BUILD_DIR)/Makefile
 
-all: 
+from-0-to-test: all
+	make run-test
+
+all: $(CMAKEFILE)
 	make -C $(BUILD_DIR) $(NAME)
 
 .PHONY: all 
 
-$(TARGET): 
+$(TARGET): $(CMAKEFILE)
 	make -C $(BUILD_DIR) $(NAME)
-
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
 
 clean:
 	make clean -C $(NAME)
@@ -23,31 +24,32 @@ fclean:
 
 .PHONY: fclean 
 
-update-cmake: update-sources
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(CMAKEFILE) : bld
+
+bld: update-sources
 	cmake -B $(BUILD_DIR)
 
-.PHONY: update-cmake
+.PHONY: bld
 
 update-sources: $(BUILD_DIR)
 	@sh ./tools/list_sources.sh build/sources.cmake
 
 .PHONY: update-sources 
 
-re: clean all
-
-.PHONY: re
-
 lsp: update-sources
 	cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B $(BUILD_DIR)
 
 .PHONY: lsp 
 
-tests:
+tests: 
 	make -C build/ tests
 
 .PHONY: tests 
 
-test-run: tests
+run-test: tests
 	./build/tests
 
 .PHONY: test-run
