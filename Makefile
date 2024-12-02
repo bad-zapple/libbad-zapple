@@ -3,11 +3,8 @@ BUILD_DIR=./build
 TARGET=$(BUILD_DIR)/$(NAME).a
 CMAKEFILE=$(BUILD_DIR)/Makefile
 
-from-0-to-test: all
-	make run-test
-
 all: $(CMAKEFILE)
-	make -C $(BUILD_DIR) $(NAME)
+	make -C $(BUILD_DIR) all
 
 .PHONY: all 
 
@@ -44,12 +41,12 @@ lsp: update-sources
 
 .PHONY: lsp 
 
-tests: 
+tests: $(CMAKEFILE)
 	make -C build/ tests
 
 .PHONY: tests 
 
-run-test: tests
-	./build/tests
+run-test: all
+	ctest --test-dir build
 
 .PHONY: test-run
