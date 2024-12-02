@@ -3,11 +3,8 @@ BUILD_DIR=./build
 TARGET=$(BUILD_DIR)/$(NAME).a
 CMAKEFILE=$(BUILD_DIR)/Makefile
 
-from-0-to-test: all
-	make run-test
-
-all: $(CMAKEFILE)
-	make -C $(BUILD_DIR) $(NAME)
+all: 
+	make -C $(BUILD_DIR) all
 
 .PHONY: all 
 
@@ -27,15 +24,15 @@ fclean:
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(CMAKEFILE) : bld
-
-bld: update-sources
+$(CMAKEFILE): build/lib_sources.cmake build/tests_sources.cmake
 	cmake -B $(BUILD_DIR)
 
 .PHONY: bld
 
+build/lib_sources.cmake: update-sources
+
 update-sources: $(BUILD_DIR)
-	@sh ./tools/list_sources.sh build/sources.cmake
+	@sh ./tools/list_sources.sh 
 
 .PHONY: update-sources 
 
@@ -44,12 +41,9 @@ lsp: update-sources
 
 .PHONY: lsp 
 
-tests: 
-	make -C build/ tests
-
 .PHONY: tests 
 
-run-test: tests
-	./build/tests
+run-test: all
+	ctest --test-dir build
 
 .PHONY: test-run
