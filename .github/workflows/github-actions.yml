@@ -13,5 +13,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Tests
-        run: make run-test
+        run: make from-0-to-test
       - run: echo "Status ${{ job.status }}."
