@@ -139,7 +139,7 @@ int main(int ac, char **av)
 		}
 	}
 
-	wait(&ret);
+	waitpid(pid, &ret, 0);
 	if (WIFEXITED(ret)) {
 		return WEXITSTATUS(ret);
 	} else {
