@@ -8,10 +8,9 @@ jobs:
       - run: echo "Triggered by ${{ github.event_name }} event."
       - run: echo "Running on ${{ runner.os }} server hosted by GitHub"
       - run: echo "Branch ${{ github.ref }} from repository ${{ github.repository }}."
-#      - name: install-catch2
-#        run: sudo apt update && sudo apt install catch2
       - name: Checkout
         uses: actions/checkout@v4
       - name: Tests
-        run: make run-test
+        run: make build/Makefile
+        run: make all
       - run: echo "Status ${{ job.status }}."

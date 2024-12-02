@@ -3,7 +3,7 @@ BUILD_DIR=./build
 TARGET=$(BUILD_DIR)/$(NAME).a
 CMAKEFILE=$(BUILD_DIR)/Makefile
 
-all: $(CMAKEFILE)
+all: 
 	make -C $(BUILD_DIR) all
 
 .PHONY: all 
