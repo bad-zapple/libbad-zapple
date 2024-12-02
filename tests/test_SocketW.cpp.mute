@@ -32,10 +32,12 @@ TEST_CASE("Basic SocketW tests", "[Client SocketW]")
 	/* We're connected to the test server, we can run test suites */
 	SECTION("1. Simple handshake")
 	{
+        std::string msg;
 		sock << "Hello testserver";
 		REQUIRE(sock.Send() > 0); /* We should be sending at least 1byte */
 		REQUIRE(sock.Receive() == true);
-		REQUIRE(sock.Consume() == "Hello testclient");
+		REQUIRE(sock.Consume(msg) == true);
+        REQUIRE(msg == "Hello testclient");
 	}
 
     close(fd);

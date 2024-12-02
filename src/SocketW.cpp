@@ -20,7 +20,7 @@ int	SocketW::Send()
 	tmp = os.str();
 	os.clear();
 	os.str(std::string());
-	tmp = tmp.substr(0, MSG_MAXLEN) + MSG_SEPARATOR;
+	tmp += MSG_SEPARATOR;
 	return (send(fd, tmp.c_str(), tmp.size(), 0));
 }
 
@@ -42,26 +42,21 @@ bool	SocketW::Receive()
 	return (consumable);
 }
 
-std::string	SocketW::Consume()
+bool	SocketW::Consume(std::string &ret)
 {
 	std::string tmp;
 	size_t		pos;
 
 	if (!consumable)
-		return (std::string("")); /* bad consume, throw exception maybe ? */
+		return (false); /* bad consume, throw exception maybe ? */
 
 	tmp = is.str();
 	pos = tmp.find(MSG_SEPARATOR);
 	is.str(std::string(tmp.substr(pos + 1)));
 	is.clear();
-	tmp = tmp.substr(0, std::min(pos, (size_t)MSG_MAXLEN));
+	ret = tmp.substr(0, pos);
 	consumable = (is.str().find(MSG_SEPARATOR) != std::string::npos); /* Set the Consummable flag */
-	return (tmp);
-}
-
-bool	SocketW::CanConsume() const
-{
-	return (consumable);
+	return (true);
 }
 
 SocketW::operator bool() const

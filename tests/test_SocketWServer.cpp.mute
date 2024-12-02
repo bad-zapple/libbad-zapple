@@ -16,10 +16,12 @@
 
 void answerTest(SocketW& client)
 {
+    std::string msg;
+
 	client.Receive();
-	while (client.CanConsume() == true) /* Until we can't consume anymore */
+	while (client.Consume(msg) == true) /* Until we can't consume anymore */
 	{
-		if (client.Consume() == "Hello testserver") /* 1. */
+		if (msg == "Hello testserver") /* 1. */
 		{
 			client << "Hello testclient";
 			client.Send();

@@ -8,7 +8,6 @@
 # include <exception>
 
 # define MSG_SEPARATOR "\n"
-# define MSG_MAXLEN 1024
 
 class SocketW
 {
@@ -29,10 +28,7 @@ class SocketW
 	bool		Receive();
 	
 	/* Get the latest message read from the socket if consumable */
-	std::string	Consume();
-
-	/* Tells if we have a message available */
-	bool        CanConsume() const;
+	bool	    Consume(std::string &ret);
 
 	/* Check if os::operator<< went well */
 	explicit	operator bool() const;
