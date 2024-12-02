@@ -38,14 +38,6 @@ bool	SocketW::Receive()
 
 	buffer[rd] = '\0';
 	is << buffer;
-	while (rd > 0)
-	{
-		rd = recv(fd, (void *)buffer, 4096, 0);
-		if (rd < 0)
-			throw ERecvError();
-		buffer[rd] = '\0';
-		is << buffer;
-	}
 	consumable = (is.str().find(MSG_SEPARATOR) != std::string::npos);
 	return (consumable);
 }
