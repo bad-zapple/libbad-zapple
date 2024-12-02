@@ -24,15 +24,15 @@ fclean:
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(CMAKEFILE) : bld
-
-bld: update-sources
+$(CMAKEFILE): build/lib_sources.cmake build/tests_sources.cmake
 	cmake -B $(BUILD_DIR)
 
 .PHONY: bld
 
+build/sources.cmake: update-sources
+
 update-sources: $(BUILD_DIR)
-	@sh ./tools/list_sources.sh build/sources.cmake
+	@sh ./tools/list_sources.sh 
 
 .PHONY: update-sources 
 
@@ -40,9 +40,6 @@ lsp: update-sources
 	cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B $(BUILD_DIR)
 
 .PHONY: lsp 
-
-tests: $(CMAKEFILE)
-	make -C build/ tests
 
 .PHONY: tests 
 
