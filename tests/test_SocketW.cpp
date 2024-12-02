@@ -1,3 +1,4 @@
+#include <cstdlib>
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 
@@ -51,6 +52,7 @@ TEST_CASE("Basic SocketW tests", "[Client SocketW]")
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/errno.h>
+#include <sys/wait.h>
 #include <stdio.h>
 #include <cstring>
 #include <unistd.h>
@@ -135,6 +137,13 @@ int main(int ac, char **av)
 			if (ret <= 0) /* Server asked to be closed */
 				break;
 		}
+	}
+
+	wait(&ret);
+	if (WIFEXITED(ret)) {
+		return WEXITSTATUS(ret);
+	} else {
+		return 1;
 	}
 
 	return (0);
