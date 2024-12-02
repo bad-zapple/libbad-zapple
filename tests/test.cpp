@@ -1,7 +1,7 @@
+#define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 #include "dummy.hpp"
 
-#define CATCH_CONFIG_MAIN
 
 
 TEST_CASE( "Dummy is tested", "[dummy]") {
