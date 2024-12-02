@@ -29,7 +29,7 @@ $(CMAKEFILE): build/lib_sources.cmake build/tests_sources.cmake
 
 .PHONY: bld
 
-build/sources.cmake: update-sources
+build/lib_sources.cmake: update-sources
 
 update-sources: $(BUILD_DIR)
 	@sh ./tools/list_sources.sh 
