@@ -1,22 +1,22 @@
 #include <MsgHelperSpectator.hpp>
 #include <SocketW.hpp>
 
-void MsgServerSpectator::Welcome(SocketW& client)
+int MsgServerSpectator::Welcome(SocketW& client)
 {
 	client << "BIENVENUE";
-	client.Send();
+	return (client.Send());
 }
 
 /* TODO: the rest */
 
-void MsgServerSpectator::UnknownCmd(SocketW& client)
+int MsgServerSpectator::UnknownCmd(SocketW& client)
 {
 	client << "suc";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerSpectator::InvalidCmdArg(SocketW& client)
+int MsgServerSpectator::InvalidCmdArg(SocketW& client)
 {
 	client << "sbp";
-	client.Send();
+	return (client.Send());
 }

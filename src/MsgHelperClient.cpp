@@ -1,29 +1,29 @@
 #include <MsgHelperClient.hpp>
 #include <SocketW.hpp>
 
-void MsgServerClient::Welcome(SocketW& client)
+int MsgServerClient::Welcome(SocketW& client)
 {
 	client << "BIENVENUE";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::Result(SocketW& client, bool state)
+int MsgServerClient::Result(SocketW& client, bool state)
 {
 	client << (state) ? "ok" : "ko";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::See(SocketW& client, const CellContent& content)
+int MsgServerClient::See(SocketW& client, const CellContent& content)
 {
 	client << "{";
 	/*
 		TODO: Implement after Cell class is done
 	*/
 	client << "}";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::Inventory(SocketW& client, const InventoryContent& inventory)
+int MsgServerClient::Inventory(SocketW& client, const InventoryContent& inventory)
 {
 	client << "{";
 	/*
@@ -32,115 +32,115 @@ void MsgServerClient::Inventory(SocketW& client, const InventoryContent& invento
 		client << "itemname " << quantity << ", "; // don't output , on the last one
 	*/
 	client << "}";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::IncantationStart(SocketW& client)
+int MsgServerClient::IncantationStart(SocketW& client)
 {
 	client << "elevation en cours";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::IncantationDone(SocketW& client, unsigned int level)
+int MsgServerClient::IncantationDone(SocketW& client, unsigned int level)
 {
 	client << "niveau actuel : " << level;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::TeamCount(SocketW& client, int teamClients)
+int MsgServerClient::TeamCount(SocketW& client, int teamClients)
 {
 	client << teamClients;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::WorldSize(SocketW& client, unsigned int width, unsigned int height)
+int MsgServerClient::WorldSize(SocketW& client, unsigned int width, unsigned int height)
 {
 	client << width << " " << height;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgServerClient::Death(SocketW& client)
+int MsgServerClient::Death(SocketW& client)
 {
 	client << "mort";
-	client.Send();
+	return (client.Send());
 }
 
 
 
-void MsgClientServer::JoinTeam(SocketW& client, const std::string& teamName)
+int MsgClientServer::JoinTeam(SocketW& client, const std::string& teamName)
 {
 	client << teamName;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Forward(SocketW& client)
+int MsgClientServer::Forward(SocketW& client)
 {
 	client << "avance";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Right(SocketW& client)
+int MsgClientServer::Right(SocketW& client)
 {
 	client << "droite";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Left(SocketW& client)
+int MsgClientServer::Left(SocketW& client)
 {
 	client << "gauche";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::See(SocketW& client)
+int MsgClientServer::See(SocketW& client)
 {
 	client << "voir";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Inventory(SocketW& client)
+int MsgClientServer::Inventory(SocketW& client)
 {
 	client << "inventaire";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Take(SocketW& client, const std::string& itemName)
+int MsgClientServer::Take(SocketW& client, const std::string& itemName)
 {
 	client << "prend " << itemName;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Place(SocketW& client, const std::string& itemName)
+int MsgClientServer::Place(SocketW& client, const std::string& itemName)
 {
 	client << "pose " << itemName;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Kick(SocketW& client)
+int MsgClientServer::Kick(SocketW& client)
 {
 	client << "expulse";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Broadcast(SocketW& client, const std::string& message)
+int MsgClientServer::Broadcast(SocketW& client, const std::string& message)
 {
 	client << "broadcast " << message;
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Incantation(SocketW& client)
+int MsgClientServer::Incantation(SocketW& client)
 {
 	client << "incantation";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::Fork(SocketW& client)
+int MsgClientServer::Fork(SocketW& client)
 {
 	client << "fork";
-	client.Send();
+	return (client.Send());
 }
 
-void MsgClientServer::TeamCount(SocketW& client)
+int MsgClientServer::TeamCount(SocketW& client)
 {
 	client << "connect_nbr";
-	client.Send();
+	return (client.Send());
 }
