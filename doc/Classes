@@ -1,0 +1,59 @@
+Configuration
+
+
+# World  -> struct []  | class a voir -
+## attr
+u_int width -> capper
+u_int height -> capper
+std::vector<Player> & player_array_in_serv / playerManager &
+Array de Cell
+ConfigurationTable[]
+## Methode
+Cell -> encapsulate
+## attention
+out of bound exception
+
+world(joueur, objet)
+
+world.find(joueur) -> position
+get cells -> position
+if objet in cell -> incr inventaire joueur + decre inventaire cell
+
+# Egg
+
+# Player
+## attr
+socket
+orientation
+coord
+inventaire
+time to die
+alive (egg or dead)
+
+# Socket PlayerManager 
+buffer_msg-> commande (version parse du dernier ordre non execute)
+timmer : t (chaque tick decr -> if 0) -> response : execute
+
+## methode
+send un message
+
+
+
+Inventory
+# Cell
+Inventaire
+Est ce qu'on mets la presence de joueur direct dans la cell ou on fait
+une recherche a chaque fois qu'on en a besoin?
+
+-> on part plus sur la recherche a chaque fois
+
+# Inventaire
+std::vector shrinked
+
+# Server
+MessageParser -> commande de merde -> trash
+	      -> bonne commande -> World.methode_associe(index_joueur)
+World
+PlayerManager
+
+
