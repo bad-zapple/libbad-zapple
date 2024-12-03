@@ -1,9 +1,9 @@
 #include <cstdlib>
 #define CATCH_CONFIG_RUNNER
-#include <catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include <LibBadZapple.hpp>
-
+#include <unistd.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>

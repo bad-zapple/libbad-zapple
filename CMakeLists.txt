@@ -6,7 +6,9 @@ project(libbad_zapple)
 
 #---------------------------------------------------------------------------------------#
 
-set(CUSTOM_LIB_PATH $ENV{HOME}/lib/)
+# Search libs in the project and not in normal install
+
+set(CUSTOM_LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #---------------------------------------------------------------------------------------#
 
@@ -28,45 +30,25 @@ target_include_directories(bad-zapple PUBLIC ${INC})
 
 #---------------------------------------------------------------------------------------#
 
-# Install Catch2
-include(CheckIncludeFile)
-CHECK_INCLUDE_FILE("inc/catch.hpp" CATCH_FOUND)
-if (NOT CATCH_FOUND)
-	execute_process(
-		COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --cyan "Curling catch.hpp"
-		COMMAND mkdir lib
-		COMMAND curl https://raw.githubusercontent.com/catchorg/Catch2/v2.x/single_include/catch2/catch.hpp -o lib/catch.hpp
-		RESULT_VARIABLE install_result
-	)
-endif()
-
 include(build/tests_sources.cmake)
-message("here \n\n\n\n")
 
+set(CMAKE_PREFIX_PATH ${CUSTOM_LIB_PATH}/lib/cmake/Catch2 ${CMAKE_PREFIX_PATH})
 message("tests_sources : " ${TEST_SOURCES})
+message("CMAKE_PREFIX_PATH : " ${CMAKE_PREFIX_PATH})
 
 include(CTest)
+
+find_package(Catch2 REQUIRED)
 
 foreach(TEST_FILE IN LISTS TEST_SOURCES)
 	cmake_path(GET TEST_FILE STEM TEST_FILE_NO_EXT)
 	add_executable(${TEST_FILE_NO_EXT} ${TEST_FILE})
 	target_link_libraries(${TEST_FILE_NO_EXT} PUBLIC bad-zapple)
-	target_include_directories(${TEST_FILE_NO_EXT} PRIVATE lib)
-	target_include_directories(${TEST_FILE_NO_EXT} PUBLIC ${INC})
+	target_link_libraries(${TEST_FILE_NO_EXT} PRIVATE Catch2::Catch2)
 	add_test(NAME ${TEST_FILE_NO_EXT} COMMAND ${TEST_FILE_NO_EXT})
-	set(TEST_LIST ${TEST_LIST} ${TEST_FILE})
+	set(TEST_LIST ${TEST_LIST} ${TEST_FILE})https://meta.intra.42.fr/issues
 endforeach()
 
 enable_testing()
-
-#---------------------------------------------------------------------------------------#
-
-# Use the library in the test project
-
-#set(CMAKE_PREFIX_PATH ${CUSTOM_LIB_PATH}/lib/cmake/Catch2 ${CMAKE_PREFIX_PATH})
-#include(build/tests_sources.cmake)
-#add_executable(tests ${TEST_SOURCES} inc/catch.hpp)
-#target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-#target_link_libraries(tests PUBLIC bad-zapple)
 
 #---------------------------------------------------------------------------------------#
