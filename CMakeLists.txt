@@ -3,7 +3,6 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(libbad_zapple)
-
 #---------------------------------------------------------------------------------------#
 
 # Search libs in the project and not in normal install
@@ -46,7 +45,7 @@ foreach(TEST_FILE IN LISTS TEST_SOURCES)
 	target_link_libraries(${TEST_FILE_NO_EXT} PUBLIC bad-zapple)
 	target_link_libraries(${TEST_FILE_NO_EXT} PRIVATE Catch2::Catch2)
 	add_test(NAME ${TEST_FILE_NO_EXT} COMMAND ${TEST_FILE_NO_EXT})
-	set(TEST_LIST ${TEST_LIST} ${TEST_FILE})https://meta.intra.42.fr/issues
+	set(TEST_LIST ${TEST_LIST} ${TEST_FILE})
 endforeach()
 
 enable_testing()

@@ -1,5 +1,5 @@
 #include <cstdlib>
-#define CATCH_CONFIG_RUNNER
+#include <iostream>
 #include <catch2/catch_all.hpp>
 
 #include <LibBadZapple.hpp>
