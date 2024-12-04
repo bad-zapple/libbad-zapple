@@ -1,0 +1,11 @@
+prefix=/home/bpoumeau/lib
+exec_prefix=${prefix}
+includedir=/home/bpoumeau/lib/include
+libdir=/home/bpoumeau/lib/lib
+
+Name: Catch2
+Description: A modern, C++-native, test framework for C++14 and above
+URL: https://github.com/catchorg/Catch2
+Version: 3.7.1
+Cflags: -I${includedir}
+Libs: -L${libdir} -lCatch2
