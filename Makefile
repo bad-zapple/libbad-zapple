@@ -46,4 +46,7 @@ lsp: update-sources
 run-test: all
 	ctest --test-dir build
 
+install-tools:
+	./tools/pre-commit-tester-installer.sh
+
 .PHONY: test-run
