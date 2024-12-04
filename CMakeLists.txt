@@ -9,6 +9,9 @@ project(libbad_zapple)
 
 set(CUSTOM_LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-pic")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
+
 #---------------------------------------------------------------------------------------#
 
 # Build bad-zapple lib
