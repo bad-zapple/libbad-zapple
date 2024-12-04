@@ -1,3 +1,5 @@
+#include <catch2/catch_test_macros.hpp>
+#include <cerrno>
 #include <cstdlib>
 #include <iostream>
 #include <catch2/catch_all.hpp>
@@ -33,12 +35,12 @@ TEST_CASE("Basic SocketW tests", "[Client SocketW]")
 	/* We're connected to the test server, we can run test suites */
 	SECTION("1. Simple handshake")
 	{
-        std::string msg;
+		std::string msg;
 		sock << "Hello testserver";
 		REQUIRE(sock.Send() > 0); /* We should be sending at least 1byte */
 		REQUIRE(sock.Receive() == true);
 		REQUIRE(sock.Consume(msg) == true);
-        REQUIRE(msg == "Hello testclient");
+		REQUIRE(msg == "Hello testclient");
 	}
 
     close(fd);
@@ -59,7 +61,7 @@ TEST_CASE("Basic SocketW tests", "[Client SocketW]")
 #include <iostream>
 
 #define TEST_PORT 0xBAAD
-#define ERR_RET(msg) {perror(msg); return(errno);}
+#define ERR_RET(msg) {perror(msg); REQUIRE(1==0); return(errno);}
 
 void answerTest(SocketW& client)
 {
@@ -68,6 +70,7 @@ void answerTest(SocketW& client)
 	client.Receive();
 	while (client.Consume(msg) == true) /* Until we can't consume anymore */
 	{
+		std::cout << "I receive : " << msg << std::endl;
 		if (msg == "Hello testserver") /* 1. */
 		{
 			client << "Hello testclient";
@@ -85,9 +88,10 @@ int main(int ac, char **av)
 
 	pid_t pid = fork();
 
-	if (pid == 0) {
+	if (pid != 0) {
 		int result = Catch::Session().run(ac, av);
-		exit(result);
+		waitpid(pid, &ret, 0);
+		return result;
 	}
 	
 	ssock = socket(PF_INET, SOCK_STREAM, 0);
@@ -139,12 +143,6 @@ int main(int ac, char **av)
 		}
 	}
 
-	waitpid(pid, &ret, 0);
-	if (WIFEXITED(ret)) {
-		return WEXITSTATUS(ret);
-	} else {
-		return 1;
-	}
 
 	return (0);
 }
