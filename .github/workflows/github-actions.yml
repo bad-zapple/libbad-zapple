@@ -11,6 +11,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Tests
-        run: make build/Makefile && make all
-        run: make run-test
+        run: make build/Makefile && make run-test
       - run: echo "Status ${{ job.status }}."
