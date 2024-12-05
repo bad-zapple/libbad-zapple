@@ -12,5 +12,4 @@ if [ -e "$GIT" ]; then
 else
     echo "not in a repository"
 fi
-echo "make lsp && make run-test" >> $PRE_COMMIT_FILE
-chmod +x $PRE_COMMIT_FILE
+cp ./tools/pre-commit $PRE_COMMIT_FILE

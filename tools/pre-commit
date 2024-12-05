@@ -1,0 +1,22 @@
+#!/bin/sh
+echo "Executing Tests"
+
+git stash -q --keep-index
+
+<<<<<<< Updated upstream
+make fclean && make lsp && make -C build all
+=======
+make lsp && make -C build all
+>>>>>>> Stashed changes
+ctest --test-dir build
+
+TEST_RESULT=$?
+
+git stash pop -q
+
+if [ $TEST_RESULT -ne 0 ]; then
+	echo "Failed tests. Commit aborted."
+	exit 1
+fi
+
+exit 0
