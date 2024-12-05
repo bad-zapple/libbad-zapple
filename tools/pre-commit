@@ -3,7 +3,6 @@ echo "Executing Tests"
 
 git stash -q --keep-index
 
-<<<<<<< Updated upstream
 make -C build all
 
 if [ $? -ne 0 ]; then
@@ -12,9 +11,6 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-=======
-make lsp && make -C build all
->>>>>>> Stashed changes
 ctest --test-dir build
 
 TEST_RESULT=$?
