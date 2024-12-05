@@ -3,11 +3,14 @@ echo "Executing Tests"
 
 git stash -q --keep-index
 
-<<<<<<< Updated upstream
-make fclean && make lsp && make -C build all
-=======
-make lsp && make -C build all
->>>>>>> Stashed changes
+make -C build all
+
+if [ $? -ne 0 ]; then
+	echo "Build need you to make lsp so build rules are done."
+	git stash pop -q
+	exit 1
+fi
+
 ctest --test-dir build
 
 TEST_RESULT=$?
