@@ -11,5 +11,4 @@ int main(int ac, char *av[] ) {
 TEST_CASE( "Dummy is tested", "[dummy]") {
 	REQUIRE( dummy() == 0);
 	REQUIRE( dummy() != 1);
-	REQUIRE( dummy() != 0);
 }
