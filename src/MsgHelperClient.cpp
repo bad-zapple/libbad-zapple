@@ -9,12 +9,13 @@ int MsgServerClient::Welcome(SocketW& client)
 
 int MsgServerClient::Result(SocketW& client, bool state)
 {
-	client << (state) ? "ok" : "ko";
+	client << ((state) ? "ok" : "ko");
 	return (client.Send());
 }
 
 int MsgServerClient::See(SocketW& client, const CellContent& content)
 {
+	(void)content;
 	client << "{";
 	/*
 		TODO: Implement after Cell class is done
@@ -25,6 +26,7 @@ int MsgServerClient::See(SocketW& client, const CellContent& content)
 
 int MsgServerClient::Inventory(SocketW& client, const InventoryContent& inventory)
 {
+	(void)inventory;
 	client << "{";
 	/*
 		TODO: Implement after Player class is done
