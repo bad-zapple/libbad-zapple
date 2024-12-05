@@ -6,7 +6,7 @@ git stash -q --keep-index
 make -C build all
 
 if [ $? -ne 0 ]; then
-	echo "Build need you to make lsp so build rules are done."
+	echo "Build failed. maybe a make lsp would help"
 	git stash pop -q
 	exit 1
 fi
