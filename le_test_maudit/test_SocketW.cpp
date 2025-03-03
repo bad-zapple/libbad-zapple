@@ -13,7 +13,6 @@
 #include <netinet/in.h>
 
 # define TEST_PORT 0xBAAD
-
 TEST_CASE("Basic SocketW tests", "[Client SocketW]")
 {
     sockaddr_in saddr_in;
@@ -146,3 +145,4 @@ int main(int ac, char **av)
 
 	return (0);
 }
+*/

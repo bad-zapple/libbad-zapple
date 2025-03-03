@@ -10,21 +10,21 @@
 
 class GameRuleSet {
 	public:
-		GameRuleSet(std::string serialized_config);
+		GameRuleSet(const std::string &serialized_config);
 		~GameRuleSet();
 
-		std::string get_serialized_config() const ;
+		const std::string &get_serialized_config() const ;
 
 	private:
-		const size_t map_h;
-		const size_t map_w;
-		const size_t tick_speed;
-		const std::vector<std::string> stones;
-		const std::vector<std::string> teams;
-		const size_t max_clients_by_team;
-		const size_t number_of_team;
-		const size_t max_clients;
-		const std::string serialized_config;
+		size_t map_w;
+		size_t map_h;
+		size_t tick_speed;
+		std::vector<std::string> stones;
+		std::vector<std::string> teams;
+		size_t max_clients_by_team;
+		size_t number_of_team;
+		size_t max_clients;
+		std::string serialized_config;
 //		ActionSpeed actions_speed; TODO uncomment when  Action Speed will be created
 //
 };
