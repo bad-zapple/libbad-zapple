@@ -10,6 +10,11 @@ jobs:
       - run: echo "Branch ${{ github.ref }} from repository ${{ github.repository }}."
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Tests
-        run: make build/Makefile && make run-test
+      - name: setup build
+        run: make build/Makefile
+      - name: build project
+        run: make
+      - name: run tests
+        run: make run-test
       - run: echo "Status ${{ job.status }}."
+
