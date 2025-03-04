@@ -5,6 +5,8 @@
 # include <vector>
 # include <string>
 
+# include <GameRuleSet.hpp>
+
 class World
 {
 		public:
@@ -28,7 +30,7 @@ class World
 	uint32_t height;
 
 		public:
-	World(const std::string& serialized_config);
+	World(const GameRuleSet& config);
 	~World();
 
 	const Cell& GetCell(uint32_t x, uint32_t y) const;
