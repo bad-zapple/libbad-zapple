@@ -1,7 +1,7 @@
 #ifndef WORLD_HPP
 # define WORLD_HPP
 
-# include <stdint.h>
+# include <cstdint>
 # include <vector>
 # include <string>
 
