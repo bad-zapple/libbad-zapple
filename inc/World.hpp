@@ -28,7 +28,7 @@ class World
 	uint32_t height;
 
 		public:
-	World();
+	World(const std::string& serialized_config);
 	~World();
 
 	const Cell& GetCell(uint32_t x, uint32_t y) const;
