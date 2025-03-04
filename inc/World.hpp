@@ -6,6 +6,7 @@
 # include <string>
 
 # include <GameRuleSet.hpp>
+# include <Player.hpp>
 
 class World
 {
@@ -13,19 +14,21 @@ class World
 	class Cell
 	{
 			private:
-		std::vector<int> inventory;
+		std::vector<uint32_t> inventory;
 	
 			public:
 		Cell();
+		Cell(size_t inventorySize);
 		~Cell();
 
 		std::string GetViewContent() const;
-		const std::vector<int>& GetRawContent() const;
-		void PlaceItem(int itemid);
-		int PickItem(int itemid);
+		const std::vector<uint32_t>& GetRawContent() const;
+		bool PlaceItem(uint32_t itemid);
+		bool PickItem(uint32_t itemid);
 	};
 
 		private:
+	Cell *cells;
 	uint32_t width;
 	uint32_t height;
 
@@ -33,14 +36,10 @@ class World
 	World(const GameRuleSet& config);
 	~World();
 
-	const Cell& GetCell(uint32_t x, uint32_t y) const;
-	Cell& GetCell(uint32_t x, uint32_t y);
+	const Cell& GetCell(int32_t x, int32_t y) const;
+	Cell& GetCell(int32_t x, int32_t y);
 	void GetDimensions(uint32_t &w, uint32_t &h) const;
-
-	/*
-		ViewIterator built with Direction+Depth(player level),
-			which will automatically map the view cone to implement "VOIR"
-	*/
+	std::string GetPlayerView(const Player& viewer) const;
 };
 
 #endif
