@@ -36,6 +36,7 @@ class Player
 		private:
 	uint32_t x;
 	uint32_t y;
+	uint16_t level;
 	orientation_e orientation;
 	life_state_e life_state; 
 	size_t time_to_die;
@@ -55,6 +56,7 @@ class Player
 	orientation_e get_orientation(void) const;
 	life_state_e get_life_state(void) const;
 	const Inventory &get_inventory(void) const;
+	uint32_t get_level(void) const;
 	
 	/* Map interaction */
 
@@ -72,6 +74,10 @@ class Player
 
 	void hatch(void);
 	void increase_time(void);
+
+	/* Level interaction */
+
+	void level_up(void);
 };
 
 #endif
