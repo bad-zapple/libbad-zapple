@@ -1,5 +1,5 @@
-#ifndef MSGHELPER_HPP
-# define MSGHELPER_HPP
+#ifndef ZAP_MSGHELPER_HPP
+# define ZAP_MSGHELPER_HPP
 
 # include "MsgHelperSpectator.hpp"
 # include "MsgHelperClient.hpp"

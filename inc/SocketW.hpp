@@ -1,5 +1,5 @@
-#ifndef SOCKETW_HPP
-# define SOCKETW_HPP
+#ifndef ZAP_SOCKETW_HPP
+# define ZAP_SOCKETW_HPP
 
 # include <sstream>
 # include <string>
@@ -7,7 +7,10 @@
 # include <sys/types.h>
 # include <exception>
 
-# define MSG_SEPARATOR "\n"
+namespace zap
+{
+
+const constexpr char *MSG_SEPARATOR = "\n";
 
 class SocketW
 {
@@ -55,5 +58,7 @@ class SocketW
 		return (*this);
 	}
 };
+
+}; /* namespace zap */
 
 #endif

@@ -8,6 +8,9 @@
 
 # include "ActionDurationSet.hpp"
 
+namespace zap
+{
+
 class GameRuleSet {
 		public:
 
@@ -34,6 +37,8 @@ class GameRuleSet {
 
 	const std::string &get_serialized_config() const ;
 };
+
+}; /* namespace zap */
 
 #endif
 

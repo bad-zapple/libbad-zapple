@@ -1,5 +1,8 @@
 #include <World.hpp>
 
+namespace zap
+{
+
 World::Cell::Cell() { }
 
 World::Cell::Cell(size_t inventorySize)
@@ -127,3 +130,5 @@ std::string World::getPlayerView(const Player& viewer) const
 	output += '}';
 	return output;
 }
+
+}; /* namespace zap */

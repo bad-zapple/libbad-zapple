@@ -3,6 +3,9 @@
 #include <cstring>
 #include <cmath>
 
+namespace zap
+{
+
 SocketW::SocketW(int newFd) : os(), is(), fd(newFd), consumable(false)
 {
 	
@@ -73,3 +76,5 @@ const char *SocketW::ERecvError::what() const throw()
 {
 	return (std::strerror(errno));
 }
+
+}; /* namespace zap */

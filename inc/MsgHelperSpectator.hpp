@@ -1,12 +1,15 @@
-#ifndef MSGHELPERSPECTATOR_HPP
-# define MSGHELPERSPECTATOR_HPP
-
-class SocketW;
-class CellContent; /* Depends on World implementation */
-class InventoryContent; /* Depends on Player implementation */
+#ifndef ZAP_MSGHELPERSPECTATOR_HPP
+# define ZAP_MSGHELPERSPECTATOR_HPP
 
 # include <string>
 
+namespace zap
+{
+	
+class SocketW;
+class CellContent; /* Depends on World implementation */
+class InventoryContent; /* Depends on Player implementation */
+	
 class MsgServerSpectator
 {
 		public:
@@ -51,5 +54,7 @@ class MsgSpectatorServer
 	static int AskTimeUnit(SocketW& client);
 	static int ChangeTimeUnit(SocketW& client, unsigned int timeUnit);
 };
+
+}; /* namespace zap */
 
 #endif
