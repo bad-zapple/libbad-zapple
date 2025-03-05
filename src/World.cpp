@@ -31,7 +31,7 @@ const std::vector<uint32_t>& World::Cell::getRawContent() const
 	return inventory;
 }
 
-bool World::Cell::placeItem(uint32_t itemid)
+bool World::Cell::placeItem(ressource_t itemid)
 {
 	if (itemid >= inventory.size())
 		return false;
@@ -40,7 +40,7 @@ bool World::Cell::placeItem(uint32_t itemid)
 	return true;
 }
 
-bool World::Cell::pickItem(uint32_t itemid)
+bool World::Cell::pickItem(ressource_t itemid)
 {
 	if (itemid >= inventory.size())
 		return false;

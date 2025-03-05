@@ -23,8 +23,8 @@ class World
 
 		std::string getViewContent() const;
 		const std::vector<uint32_t>& getRawContent() const;
-		bool placeItem(uint32_t itemid);
-		bool pickItem(uint32_t itemid);
+		bool placeItem(ressource_t itemid);
+		bool pickItem(ressource_t itemid);
 	};
 
 		private:
