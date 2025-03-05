@@ -59,10 +59,10 @@ team_t Player::getTeam(void) const {
 
 void Player::advance(void) {
 	switch (_orientation) {
-		case NORTH: _x += 1;
-		case SOUTH: _x -= 1;
-		case WEST: _y += 1;
-		case EAST: _y -= 1;
+		case NORTH: { _x += 1; return ; }
+		case SOUTH: { _x -= 1; return ; }
+		case WEST: { _y += 1; return ; }
+		case EAST: { _y -= 1; return ; }
 	}
 }
 
