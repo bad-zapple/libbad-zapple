@@ -1,9 +1,12 @@
-#ifndef PLAYER_HPP
-# define PLAYER_HPP
+#ifndef ZAP_PLAYER_HPP
+# define ZAP_PLAYER_HPP
 
 #include <cstddef>
 #include <cstdint>
 #include <vector>
+
+namespace zap
+{
 
 class Inventory;
 
@@ -100,5 +103,7 @@ class Player
 	static id_zap_t getNextId(void);
 
 };
+
+}; /* namespace zap */
 
 #endif

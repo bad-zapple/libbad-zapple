@@ -3,6 +3,9 @@
 #include <stdexcept>
 #include <vector>
 
+namespace zap
+{
+
 Inventory::Inventory():ressources(std::vector<int>()) {
 	
 }
@@ -125,3 +128,5 @@ id_zap_t Player::getNextId(void) {
 	Player::nb_of_elements += 1;
 	return nb_of_elements;
 }
+
+}; /* namespace zap */

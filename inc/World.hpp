@@ -1,5 +1,5 @@
-#ifndef WORLD_HPP
-# define WORLD_HPP
+#ifndef ZAP_WORLD_HPP
+# define ZAP_WORLD_HPP
 
 # include <cstdint>
 # include <vector>
@@ -7,6 +7,9 @@
 
 # include <GameRuleSet.hpp>
 # include <Player.hpp>
+
+namespace zap
+{
 
 class World
 {
@@ -41,5 +44,7 @@ class World
 	void getDimensions(uint32_t &w, uint32_t &h) const;
 	std::string getPlayerView(const Player& viewer) const;
 };
+
+}; /* namespace zap */
 
 #endif

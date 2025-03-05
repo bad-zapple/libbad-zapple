@@ -1,6 +1,9 @@
 #include <MsgHelperClient.hpp>
 #include <SocketW.hpp>
 
+namespace zap
+{
+
 int MsgServerClient::Welcome(SocketW& client)
 {
 	client << "BIENVENUE";
@@ -146,3 +149,5 @@ int MsgClientServer::TeamCount(SocketW& client)
 	client << "connect_nbr";
 	return (client.Send());
 }
+
+}; /* namespace zap */

@@ -1,8 +1,11 @@
-#ifndef ACTIONDURATIONSET_HPP
-# define ACTIONDURATIONSET_HPP
+#ifndef ZAP_ACTIONDURATIONSET_HPP
+# define ZAP_ACTIONDURATIONSET_HPP
 
 # include <cstddef>
 # include <string>
+
+namespace zap
+{
 
 class ActionDurationSet {
 		private:
@@ -45,5 +48,7 @@ class ActionDurationSet {
 	size_t get_tt_egg_hatched() const;
 	size_t get_tt_egg_rotten() const;
 };
+
+}; /* namespace zap */
 
 #endif

@@ -1,11 +1,14 @@
-#ifndef MSGHELPERCLIENT_HPP
-# define MSGHELPERCLIENT_HPP
+#ifndef ZAP_MSGHELPERCLIENT_HPP
+# define ZAP_MSGHELPERCLIENT_HPP
+
+# include <string>
+
+namespace zap
+{
 
 class SocketW;
 class CellContent; /* Depends on World implementation */
 class InventoryContent; /* Depends on Player implementation */
-
-# include <string>
 
 class MsgServerClient
 {
@@ -38,5 +41,7 @@ class MsgClientServer
 	static int Fork(SocketW& client);
 	static int TeamCount(SocketW& client);
 };
+
+}; /* namespace zap */
 
 #endif
