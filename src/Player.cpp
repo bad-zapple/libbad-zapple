@@ -1,4 +1,6 @@
 #include "Player.hpp"
+#include <exception>
+#include <stdexcept>
 #include <vector>
 
 Inventory::Inventory():ressources(std::vector<int>()) {
@@ -26,7 +28,7 @@ Player::Player(uint32_t x, uint32_t y, team_t team):
 {
 }
 
-id_t Player::nb_of_elements = 0;
+id_zap_t Player::nb_of_elements = 0;
 
 void Player::getPosition(uint32_t &x, uint32_t &y) const {
 	x = _x;
@@ -45,7 +47,7 @@ const Inventory &Player::getInventory(void) const {
 	return _inventory;
 }
 
-id_t Player::getId(void) const {
+id_zap_t Player::getId(void) const {
 	return _id;
 }
 
@@ -63,6 +65,7 @@ void Player::advance(void) {
 		case SOUTH: { _x -= 1; return ; }
 		case WEST: { _y += 1; return ; }
 		case EAST: { _y -= 1; return ; }
+		default: {throw std::runtime_error("Bad orientation input.\n");}
 	}
 }
 
@@ -78,10 +81,11 @@ void Player::turnLeft(void) {
 
 void Player::beKicked(orientation_t orientation) {
 	switch (orientation) {
-		case NORTH: _x -= 1;
-		case SOUTH: _x += 1;
-		case WEST: _y -= 1;
-		case EAST: _y += 1;
+		case NORTH: { _x -= 1; return ; }
+		case SOUTH: { _x += 1; return ; }
+		case WEST: { _y -= 1; return ; }
+		case EAST: { _y += 1; return ; }
+		default: {throw std::runtime_error("Bad orientation input.\n");}
 	}
 }
 
@@ -104,7 +108,7 @@ void Player::hatch(void) {
 		_life_state = EGG_HATCHED;
 }
 
-void Player::raise(void) {
+void Player::raiseToLife(void) {
 	if (_life_state == EGG_HATCHED)
 		_life_state = LIVING;
 }
@@ -117,7 +121,7 @@ void Player::levelUp(void) {
 	_level += 1;
 }
 
-id_t Player::getNextId(void) {
+id_zap_t Player::getNextId(void) {
 	Player::nb_of_elements += 1;
 	return nb_of_elements;
 }

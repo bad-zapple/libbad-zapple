@@ -9,7 +9,7 @@ class Inventory;
 
 typedef int ressource_t;
 typedef int team_t;
-typedef int id_t;
+typedef int id_zap_t;
 
 class Inventory {
 		public:
@@ -41,10 +41,10 @@ class Player
 		DEAD,
 	} life_state_e;
 
-	static id_t nb_of_elements;
+	static id_zap_t nb_of_elements;
 
 		private:
-	id_t _id;
+	id_zap_t _id;
 	uint32_t _x;
 	uint32_t _y;
 	uint32_t _level;
@@ -70,7 +70,7 @@ class Player
 	const Inventory &getInventory(void) const;
 	uint32_t getLevel(void) const;
 	team_t getTeam(void) const;
-	id_t getId(void) const;
+	id_zap_t getId(void) const;
 
 	
 	/* Map interaction */
@@ -88,7 +88,7 @@ class Player
 	/* Life state interaction */
 
 	void hatch(void);
-	void raise(void);
+	void raiseToLife(void);
 	void tickIncrementation(size_t time);
 
 	/* Level interaction */
@@ -97,7 +97,7 @@ class Player
 
 	/* Id interaction */
 
-	static id_t getNextId(void);
+	static id_zap_t getNextId(void);
 
 };
 
