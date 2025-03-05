@@ -9,7 +9,7 @@ World::Cell::Cell(size_t inventorySize)
 
 World::Cell::~Cell() { }
 
-std::string World::Cell::GetViewContent() const
+std::string World::Cell::getViewContent() const
 {
 	std::string output;
 
@@ -26,12 +26,12 @@ std::string World::Cell::GetViewContent() const
 	return output;
 }
 
-const std::vector<uint32_t>& World::Cell::GetRawContent() const
+const std::vector<uint32_t>& World::Cell::getRawContent() const
 {
 	return inventory;
 }
 
-bool World::Cell::PlaceItem(uint32_t itemid)
+bool World::Cell::placeItem(uint32_t itemid)
 {
 	if (itemid >= inventory.size())
 		return false;
@@ -40,7 +40,7 @@ bool World::Cell::PlaceItem(uint32_t itemid)
 	return true;
 }
 
-bool World::Cell::PickItem(uint32_t itemid)
+bool World::Cell::pickItem(uint32_t itemid)
 {
 	if (itemid >= inventory.size())
 		return false;
@@ -67,7 +67,7 @@ World::~World()
 	delete[] cells;
 }
 
-const World::Cell& World::GetCell(int32_t x, int32_t y) const
+const World::Cell& World::getCell(int32_t x, int32_t y) const
 {
 	while (x < 0)
 		x += width;
@@ -78,7 +78,7 @@ const World::Cell& World::GetCell(int32_t x, int32_t y) const
 	return cells[y * width + x];
 }
 
-World::Cell& World::GetCell(int32_t x, int32_t y)
+World::Cell& World::getCell(int32_t x, int32_t y)
 {
 	while (x < 0)
 		x += width;
@@ -89,13 +89,13 @@ World::Cell& World::GetCell(int32_t x, int32_t y)
 	return cells[y * width + x];
 }
 
-void World::GetDimensions(uint32_t &w, uint32_t &h) const
+void World::getDimensions(uint32_t &w, uint32_t &h) const
 {
 	w = width;
 	h = height;
 }
 
-std::string World::GetPlayerView(const Player& viewer) const
+std::string World::getPlayerView(const Player& viewer) const
 {
 	Player::orientation_e orient;
 	uint32_t x;
@@ -116,9 +116,9 @@ std::string World::GetPlayerView(const Player& viewer) const
 		{
 			// output += playersFound;
 			if (horizontal)
-				output += GetCell(x + i * dir, y + j * dir).GetViewContent();
+				output += getCell(x + i * dir, y + j * dir).getViewContent();
 			else
-				output += GetCell(x + j * -dir, y + i * dir).GetViewContent();
+				output += getCell(x + j * -dir, y + i * dir).getViewContent();
 			output += ", ";
 		}
 	}

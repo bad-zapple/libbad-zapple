@@ -21,10 +21,10 @@ class World
 		Cell(size_t inventorySize);
 		~Cell();
 
-		std::string GetViewContent() const;
-		const std::vector<uint32_t>& GetRawContent() const;
-		bool PlaceItem(uint32_t itemid);
-		bool PickItem(uint32_t itemid);
+		std::string getViewContent() const;
+		const std::vector<uint32_t>& getRawContent() const;
+		bool placeItem(uint32_t itemid);
+		bool pickItem(uint32_t itemid);
 	};
 
 		private:
@@ -36,10 +36,10 @@ class World
 	World(const GameRuleSet& config);
 	~World();
 
-	const Cell& GetCell(int32_t x, int32_t y) const;
-	Cell& GetCell(int32_t x, int32_t y);
-	void GetDimensions(uint32_t &w, uint32_t &h) const;
-	std::string GetPlayerView(const Player& viewer) const;
+	const Cell& getCell(int32_t x, int32_t y) const;
+	Cell& getCell(int32_t x, int32_t y);
+	void getDimensions(uint32_t &w, uint32_t &h) const;
+	std::string getPlayerView(const Player& viewer) const;
 };
 
 #endif
