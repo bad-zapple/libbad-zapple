@@ -7,7 +7,7 @@
 
 class Inventory;
 
-typedef int ressource_t;
+typedef unsigned int ressource_t;
 typedef int team_t;
 typedef int id_zap_t;
 
