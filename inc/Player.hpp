@@ -3,81 +3,102 @@
 
 #include <cstddef>
 #include <cstdint>
-
-// #include "Inventory.hpp"
-//
-#ifndef INVENTORY_HPP //TODO suppress with Inventory comming
-class Inventory {
-};
-#endif //INVENTORY_HPP
+#include <vector>
 
 class Inventory;
 
 typedef int ressource_t;
 typedef int team_t;
+typedef int id_zap_t;
+
+class Inventory {
+		public:
+	Inventory();
+	~Inventory();
+	int &operator[](ressource_t index);
+	const int &operator[](ressource_t index) const;
+		private:
+	std::vector<int> ressources;
+};
+
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
+
+#define TIME_FOR_ONE_FOOD_UNIT 126
+#define TIME_TO_LIVE_AT_LAYING 1260
 
 class Player
 {
 		public:
-	typedef enum player_orientation {
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST,
-	} orientation_e;
+	typedef char orientation_t;
 
 	typedef enum life_state {
-		EGG_HACTHING,
+		EGG_HATCHING,
 		EGG_HATCHED,
 		LIVING,
 		DEAD,
 	} life_state_e;
 
+	static id_zap_t nb_of_elements;
+
 		private:
-	uint32_t x;
-	uint32_t y;
-	uint16_t level;
-	orientation_e orientation;
-	life_state_e life_state; 
-	size_t time_to_die;
-	team_t team_index;
-	Inventory inventory;
+	id_zap_t _id;
+	uint32_t _x;
+	uint32_t _y;
+	uint32_t _level;
+	orientation_t _orientation;
+	life_state_e _life_state; 
+	size_t _time_to_die;
+	team_t _team_index;
+	Inventory _inventory;
 
 		public:
 
+
 	/* Constructor */
 
-	Player();
+	Player(uint32_t x, uint32_t y, team_t team);
 	~Player();
 
 	/* Getter and setter */
 
-	void get_position(uint32_t &_x, uint32_t &_y) const;
-	orientation_e get_orientation(void) const;
-	life_state_e get_life_state(void) const;
-	const Inventory &get_inventory(void) const;
-	uint32_t get_level(void) const;
+	void getPosition(uint32_t &x, uint32_t &y) const;
+	orientation_t getOrientation(void) const;
+	life_state_e getLifeState(void) const;
+	const Inventory &getInventory(void) const;
+	uint32_t getLevel(void) const;
+	team_t getTeam(void) const;
+	id_zap_t getId(void) const;
+
 	
 	/* Map interaction */
 
 	void advance(void);
-	void turn_right(void);
-	void turn_left(void);
-	void be_kicked(orientation_e orientation);
+	void turnRight(void);
+	void turnLeft(void);
+	void beKicked(orientation_t orientation);
 
 	/* Item interaction */
 
-	void take_item(ressource_t index);
-	bool lose_item(ressource_t index);
+	void takeItem(ressource_t index);
+	bool loseItem(ressource_t index);
 
 	/* Life state interaction */
 
 	void hatch(void);
-	void increase_time(void);
+	void raiseToLife(void);
+	void tickIncrementation(size_t time);
 
 	/* Level interaction */
 
-	void level_up(void);
+	void levelUp(void);
+
+	/* Id interaction */
+
+	static id_zap_t getNextId(void);
+
 };
 
 #endif
