@@ -61,10 +61,10 @@ team_t Player::getTeam(void) const {
 
 void Player::advance(void) {
 	switch (_orientation) {
-		case NORTH: { _x -= 1; return ; }
-		case SOUTH: { _x += 1; return ; }
-		case WEST: { _y += 1; return ; }
-		case EAST: { _y -= 1; return ; }
+		case NORTH: { _y -= 1; return ; }
+		case SOUTH: { _y += 1; return ; }
+		case WEST: { _x -= 1; return ; }
+		case EAST: { _x += 1; return ; }
 		default: {throw std::runtime_error("Bad orientation input.\n");}
 	}
 }
@@ -81,10 +81,10 @@ void Player::turnLeft(void) {
 
 void Player::beKicked(orientation_t orientation) {
 	switch (orientation) {
-		case NORTH: { _x += 1; return ; }
-		case SOUTH: { _x -= 1; return ; }
-		case WEST: { _y -= 1; return ; }
-		case EAST: { _y += 1; return ; }
+		case NORTH: { _y -= 1; return ; }
+		case SOUTH: { _y += 1; return ; }
+		case WEST: { _x -= 1; return ; }
+		case EAST: { _x += 1; return ; }
 		default: {throw std::runtime_error("Bad orientation input.\n");}
 	}
 }
