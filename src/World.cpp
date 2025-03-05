@@ -97,7 +97,7 @@ void World::getDimensions(uint32_t &w, uint32_t &h) const
 
 std::string World::getPlayerView(const Player& viewer) const
 {
-	Player::orientation_e orient;
+	Player::orientation_t orient;
 	uint32_t x;
 	uint32_t y;
 	int level = 3; //Placeholder
@@ -105,11 +105,11 @@ std::string World::getPlayerView(const Player& viewer) const
 	bool horizontal = false;
 	int dir = 1;
 
-	orient = viewer.get_orientation();
-	horizontal = (orient == Player::WEST || orient == Player::EAST);
-	if (orient == Player::NORTH || orient == Player::WEST)
+	orient = viewer.getOrientation();
+	horizontal = (orient == WEST || orient == EAST);
+	if (orient == NORTH || orient == WEST)
 		dir = -1;
-	viewer.get_position(x, y);
+	viewer.getPosition(x, y);
 	for (int i = 0; i < level + 1; i++)
 	{
 		for (int j = -i; j <= i; j++)
